@@ -7,4 +7,8 @@ router.get("/productlist", getProductList);
 router.get("/featuredproducts", getFeaturedProducts);
 router.post("/addproduct", addProduct);
 
+router.get("/", (req, res) => {
+  res.send("Backend of Ruta Camper");
+});
+
 export default router;
