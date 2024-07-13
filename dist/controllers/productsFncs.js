@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.addProduct = exports.getFeaturedProducts = exports.getProductList = void 0;
+exports.deleteProduct = exports.updateProduct = exports.addProduct = exports.getFeaturedProducts = exports.getProductList = void 0;
 const productModel_1 = __importDefault(require("../models/productModel"));
 /**
  * Retrieves the list of products from the database and sends it as a JSON response.
@@ -53,11 +53,38 @@ const addProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     const body = req.body;
     try {
         const product = yield productModel_1.default.create(body);
-        res.json({ product });
-        console.log(product);
+        res.json({ message: "Ok", info: product });
+        console.log("Product added: ", product);
     }
     catch (error) {
         console.log(error);
     }
 });
 exports.addProduct = addProduct;
+const updateProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const body = req.body;
+    const id = req.params.id;
+    try {
+        const product = yield productModel_1.default.findByIdAndUpdate(id, body);
+        res.json({ message: "Ok", info: product });
+        console.log("Product updated: ", product);
+    }
+    catch (error) {
+        console.log(error);
+    }
+});
+exports.updateProduct = updateProduct;
+const deleteProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = req.params.id;
+    console.log("ID: ", id);
+    try {
+        const product = yield productModel_1.default.findByIdAndDelete(id);
+        res.json({ message: "Ok", info: product });
+        console.log("Product deleted: ", product);
+    }
+    catch (error) {
+        res.json({ message: "Error", info: error });
+        console.log(error);
+    }
+});
+exports.deleteProduct = deleteProduct;
