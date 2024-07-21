@@ -12,8 +12,6 @@ export const getProductList = async ({}, res: Response) => {
   try {
     const products = await Products.find();
     res.json({products});
-    console.log(products);
-    
   } catch (error) {
     console.log(error);
   }
@@ -23,8 +21,6 @@ export const getFeaturedProducts = async ({}, res: Response) => {
   try {
     const products = await Products.find({featured: true});
     res.json({products});
-    console.log(products);
-    
   } catch (error) {
     console.log(error);
   }
@@ -41,8 +37,6 @@ export const addProduct = async (req: Request, res: Response) => {
   try {
     const product = await Products.create(body);
     res.json({ message: "Ok", info: product});
-    console.log("Product added: ", product);
-    
   } catch (error) {
     console.log(error);
   }
@@ -54,8 +48,6 @@ export const updateProduct = async (req: Request, res: Response) => {
   try {
     const product = await Products.findByIdAndUpdate(id, body);
     res.json({ message: "Ok", info: product});
-    console.log("Product updated: ", product);
-    
   } catch (error) {
     console.log(error);
   }
@@ -63,13 +55,9 @@ export const updateProduct = async (req: Request, res: Response) => {
 
 export const deleteProduct = async (req: Request, res: Response) => {
   const id = req.params.id;
-  console.log("ID: ", id);
-  
   try {
     const product = await Products.findByIdAndDelete(id);
     res.json({ message: "Ok", info: product});
-    console.log("Product deleted: ", product);
-    
   } catch (error) {
     res.json({ message: "Error", info: error});
     console.log(error);

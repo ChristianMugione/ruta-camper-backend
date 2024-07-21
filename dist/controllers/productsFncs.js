@@ -25,7 +25,6 @@ const getProductList = (_a, res_1) => __awaiter(void 0, [_a, res_1], void 0, fun
     try {
         const products = yield productModel_1.default.find();
         res.json({ products });
-        console.log(products);
     }
     catch (error) {
         console.log(error);
@@ -36,7 +35,6 @@ const getFeaturedProducts = (_b, res_2) => __awaiter(void 0, [_b, res_2], void 0
     try {
         const products = yield productModel_1.default.find({ featured: true });
         res.json({ products });
-        console.log(products);
     }
     catch (error) {
         console.log(error);
@@ -54,7 +52,6 @@ const addProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     try {
         const product = yield productModel_1.default.create(body);
         res.json({ message: "Ok", info: product });
-        console.log("Product added: ", product);
     }
     catch (error) {
         console.log(error);
@@ -67,7 +64,6 @@ const updateProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     try {
         const product = yield productModel_1.default.findByIdAndUpdate(id, body);
         res.json({ message: "Ok", info: product });
-        console.log("Product updated: ", product);
     }
     catch (error) {
         console.log(error);
@@ -76,11 +72,9 @@ const updateProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* 
 exports.updateProduct = updateProduct;
 const deleteProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = req.params.id;
-    console.log("ID: ", id);
     try {
         const product = yield productModel_1.default.findByIdAndDelete(id);
         res.json({ message: "Ok", info: product });
-        console.log("Product deleted: ", product);
     }
     catch (error) {
         res.json({ message: "Error", info: error });
