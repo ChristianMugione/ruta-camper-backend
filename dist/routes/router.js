@@ -24,6 +24,6 @@ router.delete("/deleteproduct/:id", productsFncs_1.deleteProduct);
 // USERS
 router.delete("/deleteuser/:id", userFncs_1.deleteUser);
 // ORDERS
-router.get("/orders", orderFncs_1.getOrders);
+router.get("/orders/:userId", orderFncs_1.getOrders);
 router.post("/order", orderFncs_1.addOrder);
 exports.default = router;

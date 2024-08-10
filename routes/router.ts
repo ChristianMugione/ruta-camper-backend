@@ -37,7 +37,7 @@ router.delete("/deleteproduct/:id", deleteProduct);
 router.delete("/deleteuser/:id", deleteUser);
 
 // ORDERS
-router.get("/orders", getOrders);
+router.get("/orders/:userId", getOrders);
 router.post("/order", addOrder);
 
 export default router;

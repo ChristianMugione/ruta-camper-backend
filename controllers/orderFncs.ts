@@ -5,8 +5,14 @@ import mongoose, { ObjectId, Types } from "mongoose";
 
 //function getOrders
 export const getOrders = async (req: Request, res: Response) => {
+  console.log("req.params.userId", req.params.userId);
+  
+  const userId = new Types.ObjectId(req.params.userId);
+
   try {
-    const orders = await Orders.find();
+    //get orders by userId
+    const orders = await Orders.find({ userId });
+    console.log(orders);    
     res.json({ orders });
   } catch (error) {
     console.log(error);
