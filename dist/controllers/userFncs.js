@@ -46,7 +46,7 @@ const userLogin = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const token = (0, auth_1.generateJWT)(userDataPlain);
         console.log(token);
         // Function generateJWT
-        res.json({ message: "Login successful", token: token });
+        res.json({ message: "Login successful", token: token, userId: userData._id });
     }
     catch (error) {
         console.log(error);

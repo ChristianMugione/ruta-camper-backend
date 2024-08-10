@@ -13,10 +13,9 @@ const generateJWT = (userData: any) => {
 
 const verifyToken = async (req: Request, res: Response) => {
   const token = req.params.token;
-  console.log("token: ", token, "FIN TOKEN");
+  
   const { JWT_SECRET } = process.env;
-  console.log("JWT_SECRET: ", JWT_SECRET);
-
+  
   try {
     const decoded = jwt.verify(token, JWT_SECRET!);
     res.json({ message: decoded}); 

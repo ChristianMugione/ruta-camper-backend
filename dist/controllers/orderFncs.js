@@ -12,26 +12,31 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.verifyToken = exports.generateJWT = void 0;
-const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-const dotenv_1 = __importDefault(require("dotenv"));
-dotenv_1.default.config();
-const generateJWT = (userData) => {
-    const { JWT_SECRET } = process.env;
-    console.log("typeof userData: ", typeof userData);
-    const token = jsonwebtoken_1.default.sign(userData, JWT_SECRET, { expiresIn: '30d' });
-    return token;
-};
-exports.generateJWT = generateJWT;
-const verifyToken = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const token = req.params.token;
-    const { JWT_SECRET } = process.env;
+exports.addOrder = exports.getOrders = void 0;
+const orderModel_1 = __importDefault(require("../models/orderModel"));
+const mongoose_1 = require("mongoose");
+//function getOrders
+const getOrders = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const decoded = jsonwebtoken_1.default.verify(token, JWT_SECRET);
-        res.json({ message: decoded });
+        const orders = yield orderModel_1.default.find();
+        res.json({ orders });
     }
     catch (error) {
-        res.status(401).json({ message: 'Unauthorized' });
+        console.log(error);
     }
 });
-exports.verifyToken = verifyToken;
+exports.getOrders = getOrders;
+//function addOrder
+const addOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const body = req.body;
+    const userId = new mongoose_1.Types.ObjectId(req.body.userId);
+    const newOrder = Object.assign(Object.assign({}, body), { userId: userId });
+    try {
+        const order = yield orderModel_1.default.create(newOrder);
+        res.json({ message: "Ok", info: order });
+    }
+    catch (error) {
+        console.log(error, newOrder);
+    }
+});
+exports.addOrder = addOrder;

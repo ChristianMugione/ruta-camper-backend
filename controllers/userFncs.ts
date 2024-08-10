@@ -36,7 +36,7 @@ export const userLogin = async (req: Request, res: Response) => {
     // Function generateJWT
     
 
-    res.json({ message: "Login successful", token: token });
+    res.json({ message: "Login successful", token: token, userId: userData._id });
   } catch (error) {
     console.log(error);
   }
