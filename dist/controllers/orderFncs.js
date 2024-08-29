@@ -19,6 +19,7 @@ const mongoose_1 = require("mongoose");
 const getOrders = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     console.log("req.params.userId: ", req.params.userId);
     const userId = new mongoose_1.Types.ObjectId(req.params.userId);
+    console.log("userId: ", userId);
     try {
         //get orders by userId
         const orders = yield orderModel_1.default.find({ userId });

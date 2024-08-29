@@ -2,12 +2,15 @@
 import { Request, Response } from "express";
 import Orders from "../models/orderModel";
 import mongoose, { ObjectId, Types } from "mongoose";
+import { log } from "console";
 
 //function getOrders
 export const getOrders = async (req: Request, res: Response) => {
   console.log("req.params.userId: ", req.params.userId);
   
   const userId = new Types.ObjectId(req.params.userId);
+
+  console.log("userId: ", userId);
 
   try {
     //get orders by userId
