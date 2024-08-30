@@ -26,7 +26,7 @@ router.post("/adduser", createUser);
 router.get("/verifytoken/:token", verifyToken);
 
 // middleware
-// router.use(middleware);
+router.use(middleware);
 
 // PRODUCTS
 router.post("/addproduct", addProduct);

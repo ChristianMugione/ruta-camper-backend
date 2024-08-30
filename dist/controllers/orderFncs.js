@@ -18,6 +18,7 @@ const mongoose_1 = require("mongoose");
 //function getOrders
 const getOrders = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     console.log("req.params.userId: ", req.params.userId);
+    console.log("req.headers.token: ", req.headers.token);
     const userId = new mongoose_1.Types.ObjectId(req.params.userId);
     console.log("userId: ", userId);
     try {

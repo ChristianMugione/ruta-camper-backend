@@ -14,6 +14,10 @@ const OrderSchema = new mongoose_1.Schema({
     items: {
         type: [
             {
+                image: {
+                    type: String,
+                    required: true
+                },
                 title: {
                     type: String,
                     required: true

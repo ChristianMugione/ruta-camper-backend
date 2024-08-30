@@ -7,6 +7,7 @@ import { log } from "console";
 //function getOrders
 export const getOrders = async (req: Request, res: Response) => {
   console.log("req.params.userId: ", req.params.userId);
+  console.log("req.headers.token: ", req.headers.token);
   
   const userId = new Types.ObjectId(req.params.userId);
 

@@ -38,6 +38,10 @@ const OrderSchema = new Schema<IOrder>({
   items: {
     type: [
     {
+      image: {
+        type: String,
+        required: true
+      },
       title: { //title
         type: String, 
         required: true 
