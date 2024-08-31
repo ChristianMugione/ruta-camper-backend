@@ -11,7 +11,7 @@ export const middleware = (req: Request, res: Response, next: NextFunction) => {
 
     const decoded: any = decodeToken(token!); //todo, make it not any
 
-    console.log(decoded._doc.name);
+    console.log("Decoded name:", decoded._doc.name);
     
     // if (req.headers.authorization !== "admin") {
     //   console.log("no");

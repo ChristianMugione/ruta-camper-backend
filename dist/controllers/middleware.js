@@ -8,7 +8,7 @@ const middleware = (req, res, next) => {
     console.log(message);
     const token = req.headers.token;
     const decoded = (0, auth_1.decodeToken)(token); //todo, make it not any
-    console.log(decoded._doc.name);
+    console.log("Decoded name:", decoded._doc.name);
     // if (req.headers.authorization !== "admin") {
     //   console.log("no");
     //   res.status(401).json({ message: "Unauthorized"});
