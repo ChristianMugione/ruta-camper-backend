@@ -34,5 +34,6 @@ export const addOrder = async (req: Request, res: Response) => {
     res.json({ message: "Ok", info: order });
   } catch (error) {
     console.log(error, newOrder);
+    res.json({ message: "Error", info: error });
   }
 }

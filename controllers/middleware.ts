@@ -4,7 +4,7 @@ import { Request, Response, NextFunction } from "express";
 import { decodeToken } from "./auth";
 
 export const middleware = (req: Request, res: Response, next: NextFunction) => {
-  
+
     const message = `Middleware: req.method: ${req.method}, req.url: ${req.url}`;
     console.log(message);
     const token = req.headers.token as string;

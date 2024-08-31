@@ -43,6 +43,7 @@ const addOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
     catch (error) {
         console.log(error, newOrder);
+        res.json({ message: "Error", info: error });
     }
 });
 exports.addOrder = addOrder;

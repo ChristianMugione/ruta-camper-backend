@@ -37,7 +37,7 @@ const verifyToken = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
 exports.verifyToken = verifyToken;
 const decodeToken = (token) => {
     const { JWT_SECRET } = process.env;
-    console.log("---------------", JWT_SECRET);
+    // console.log("---------------", JWT_SECRET);
     return jsonwebtoken_1.default.verify(token, JWT_SECRET);
 };
 exports.decodeToken = decodeToken;
