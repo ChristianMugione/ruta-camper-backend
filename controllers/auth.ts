@@ -24,4 +24,10 @@ const verifyToken = async (req: Request, res: Response) => {
   }
 }
 
+export const decodeToken = (token: string) => {
+  const { JWT_SECRET } = process.env;
+
+  return jwt.verify(token, JWT_SECRET!);
+}
+
 export { generateJWT, verifyToken }

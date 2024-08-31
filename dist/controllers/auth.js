@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.verifyToken = exports.generateJWT = void 0;
+exports.verifyToken = exports.generateJWT = exports.decodeToken = void 0;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
@@ -35,3 +35,8 @@ const verifyToken = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     }
 });
 exports.verifyToken = verifyToken;
+const decodeToken = (token) => {
+    const { JWT_SECRET } = process.env;
+    return jsonwebtoken_1.default.verify(token, JWT_SECRET);
+};
+exports.decodeToken = decodeToken;
