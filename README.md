@@ -4,10 +4,6 @@
 
 Esta app provee los datos de los productos, usuarios y órdenes al frontend.
 
-## Prestaciones
-
-- Retrieve a list of products from the database.
-
 ## Technologies Used
 
 - Typescript
