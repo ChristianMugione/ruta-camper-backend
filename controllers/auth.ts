@@ -1,4 +1,4 @@
-import jwt from 'jsonwebtoken';
+import jwt, { JwtPayload } from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import { Request, Response } from 'express';
 dotenv.config();
@@ -17,7 +17,9 @@ const verifyToken = async (req: Request, res: Response) => {
   const { JWT_SECRET } = process.env;
   
   try {
-    const decoded = jwt.verify(token, JWT_SECRET!);
+    const decoded = jwt.verify(token, JWT_SECRET!) as JwtPayload;
+    console.log("decoded: ", decoded);
+    
     res.json({ message: decoded}); 
   } catch (error) {
     res.status(401).json({ message: 'Unauthorized' });
@@ -26,9 +28,8 @@ const verifyToken = async (req: Request, res: Response) => {
 
 export const decodeToken = (token: string) => {
   const { JWT_SECRET } = process.env;
-  console.log("typeof token: ", token);
   
-  return jwt.verify(token, JWT_SECRET!);
+  return jwt.verify(token, JWT_SECRET!) as JwtPayload;
 }
 
 export { generateJWT, verifyToken }

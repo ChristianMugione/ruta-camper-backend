@@ -28,6 +28,7 @@ const verifyToken = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     const { JWT_SECRET } = process.env;
     try {
         const decoded = jsonwebtoken_1.default.verify(token, JWT_SECRET);
+        console.log("decoded: ", decoded);
         res.json({ message: decoded });
     }
     catch (error) {
@@ -37,7 +38,6 @@ const verifyToken = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
 exports.verifyToken = verifyToken;
 const decodeToken = (token) => {
     const { JWT_SECRET } = process.env;
-    console.log("typeof token: ", token);
     return jsonwebtoken_1.default.verify(token, JWT_SECRET);
 };
 exports.decodeToken = decodeToken;

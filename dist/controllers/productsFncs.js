@@ -27,7 +27,7 @@ const getProductList = (_a, res_1) => __awaiter(void 0, [_a, res_1], void 0, fun
         res.json({ products });
     }
     catch (error) {
-        console.log(error);
+        res.json({ message: "Error", info: error });
     }
 });
 exports.getProductList = getProductList;
@@ -59,8 +59,8 @@ const addProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
 });
 exports.addProduct = addProduct;
 const updateProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const body = req.body;
-    const id = req.params.id;
+    const { body, params } = req;
+    const { id } = params;
     try {
         const product = yield productModel_1.default.findByIdAndUpdate(id, body);
         res.json({ message: "Ok", info: product });

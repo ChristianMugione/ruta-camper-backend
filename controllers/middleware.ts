@@ -2,23 +2,22 @@
 
 import { Request, Response, NextFunction } from "express";
 import { decodeToken } from "./auth";
+import { JwtPayload } from "jsonwebtoken";
 
 export const middleware = (req: Request, res: Response, next: NextFunction) => {
-
-    const message = `Middleware: req.method: ${req.method}, req.url: ${req.url}`;
-    console.log(message);
+    
     const token = req.headers.token as string;
 
-    const decoded: any = decodeToken(token!); //todo, make it not any
+    const payload: JwtPayload = decodeToken(token!); 
 
-    console.log("Decoded name:", decoded._doc.name);
-    
-    // if (req.headers.authorization !== "admin") {
-    //   console.log("no");
-    //   res.status(401).json({ message: "Unauthorized"});
-    //   return;
-    
-    // }
+    if (!payload) {
+        res.status(401).json({ message: 'Unauthorized' });
+        return;
+    }
+
+    const { id, role } = payload;
+    req.body = { id, role };
+
     next();
 };
 

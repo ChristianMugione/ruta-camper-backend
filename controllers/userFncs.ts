@@ -31,11 +31,7 @@ export const userLogin = async (req: Request, res: Response) => {
     //create token and send
     const userDataPlain = { ...userData };
     const token = generateJWT(userDataPlain);
-    console.log(token);
   
-    // Function generateJWT
-    
-
     res.json({ message: "Login successful", token: token, userId: userData._id });
   } catch (error) {
     console.log(error);

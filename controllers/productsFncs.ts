@@ -13,7 +13,7 @@ export const getProductList = async ({}, res: Response) => {
     const products = await Products.find();
     res.json({products});
   } catch (error) {
-    console.log(error);
+    res.json({ message: "Error", info: error});
   }
 }
 
@@ -43,11 +43,11 @@ export const addProduct = async (req: Request, res: Response) => {
 }
 
 export const updateProduct = async (req: Request, res: Response) => {
-  const body = req.body;
-  const id = req.params.id;
+  const { body, params } = req;
+  const { id } = params;
   try {
     const product = await Products.findByIdAndUpdate(id, body);
-    res.json({ message: "Ok", info: product});
+    res.json({ message: "Ok", info: product });
   } catch (error) {
     console.log(error);
   }
